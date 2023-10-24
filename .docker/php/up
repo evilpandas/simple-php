@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv /bin/ash
+exec 2>&1
+echo "STARTED SERVICE: php-fpm";
+exec /usr/bin/php-fpm -F
