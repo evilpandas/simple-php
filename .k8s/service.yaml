@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sw-service
+  labels:
+    app: sw-simple
+spec:
+  selector:
+    app: sw-simple
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP

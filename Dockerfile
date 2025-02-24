@@ -1,15 +1,15 @@
-FROM alpine:3.18
+FROM alpine:3.21
 ENV TZ=America/Denver
 
-ARG PHP_VERSION="82"
+ARG PHP_VERSION="84"
 ARG S6_OVERLAY_VERSION="3.1.5.0"
 ARG COMPOSER_VERSION="2"
 ARG XDEBUG_VERSION="3.1.3"
 
 
 # Common PHP Frameworks Env Variables
-ENV APP_ENV prod
-ENV APP_DEBUG 0
+ENV APP_ENV=prod
+ENV APP_DEBUG=0
 
 
 # Set SHELL flags for RUN commands to allow -e and pipefail
@@ -97,7 +97,7 @@ WORKDIR /app
 # Add application
 COPY --chown=nobody src/ /app
 
-EXPOSE 80
+EXPOSE 8080
 CMD ["/init"]
 
 # Configure a healthcheck to validate that everything is up&running

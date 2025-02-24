@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sw-deployment
+  name: sw-simple-deployment
   labels:
     app: sw-simple
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: sw-simple
@@ -18,4 +18,4 @@ spec:
       - name: sw-simple
         image: evilpandas/sw-simple
         ports:
-        - containerPort: 80
+        - containerPort: 8080
