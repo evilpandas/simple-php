@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sw-simple
+  namespace: argocd
+spec:
+  project: default # Or create a custom project
+  source:
+    repoURL: https://github.com/evilpandas/simple-php.git # Your Git repo
+    targetRevision: main # Or a specific tag/commit
+    path: .k8s # Path within the repo to your manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sw-simple # The namespace to deploy to
+  syncPolicy: # How Argo CD should sync changes
+    automated: # Automatically sync changes
+      selfHeal: true # Automatically correct drift
+      prune: true # Remove resources no longer in Git
+  # Add other options like ignoreDifferences, hooks, etc. as needed
