@@ -47,7 +47,7 @@ jobs:
     environment: stage
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
@@ -68,7 +68,7 @@ jobs:
               ref: 'main',
               inputs: {
                 environment: 'stage',
-                image_tag: '${{ env.SHORT_TAG }}' # Pass short SHA
+                image_tag: '${{ env.SHORT_TAG }}'
               }
             })
 
