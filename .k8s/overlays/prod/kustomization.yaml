@@ -1,13 +1,8 @@
-bases:
-- ../../base
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
 
 patchesStrategicMerge:
-- deployment-patch.yaml
-
-# Example deployment-patch.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: sw-simple-deployment
-spec:
-  replicas: 5 # Example: Set replicas to 5 for prod
+  - deployment-patch.yaml

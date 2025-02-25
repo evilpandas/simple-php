@@ -1,0 +1,6 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sw-simple
+spec:
+  replicas: 5  # Corrected indentation
