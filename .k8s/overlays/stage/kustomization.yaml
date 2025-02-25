@@ -4,15 +4,15 @@ kind: Kustomization
 resources:
 - ../../base
 
+    
 patches:
 - path: argo-app-patch.yaml
   target:
     kind: Application
     name: sw-simple
-    
 - path: deployment-patch.yaml
 
 images:
 - name: evilpandas/sw-simple
   newName: evilpandas/sw-simple
-  newTag: 937f84b
+  newTag: 4c6453e
