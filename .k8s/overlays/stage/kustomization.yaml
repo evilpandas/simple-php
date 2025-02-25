@@ -10,4 +10,4 @@ kind: Deployment
 metadata:
   name: sw-simple
 spec:
-  replicas: 3 # Example: Set replicas to 3 for stage
+    replicas: 3 # Example: Set replicas to 3 for stage
