@@ -5,9 +5,13 @@ resources:
 - ../../base
 
 patches:
-- target:
+- path: argo-app-patch.yaml
+  target:
     kind: Application
     name: sw-simple
-  path: argo-app-patch.yaml
 - path: image-patch.yaml
 - path: deployment-patch.yaml
+images:
+- name: evilpandas/sw-simple
+  newName: evilpandas/sw-simple
+  newTag: 5a0a311
