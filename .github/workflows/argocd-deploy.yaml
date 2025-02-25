@@ -60,6 +60,7 @@ jobs:
       - name: Deploy to Stage (Manual Approval)
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GH_PAT }}
           script: |
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
@@ -92,6 +93,7 @@ jobs:
       - name: Deploy to Prod (Manual Approval)
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GH_PAT }}
           script: |
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
