@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: sw-simple
+  name: sw-simple-deployment
+spec:
+  template:
+    spec:
+      containers:
+      - name: sw-simple
+        image: evilpandas/sw-simple:${{ env.SHORT_TAG }} 

@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sw-simple
+  namespace: argocd
+spec:
+  source:
+    path: .k8s/overlays/stage
+  destination:
+    namespace: sw-simple
