@@ -9,8 +9,9 @@ patches:
   target:
     kind: Application
     name: sw-simple
-- path: image-patch.yaml
+    
 - path: deployment-patch.yaml
+
 images:
 - name: evilpandas/sw-simple
   newName: evilpandas/sw-simple
