@@ -6,13 +6,14 @@ on:
       - main # Trigger build on push to main
 
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME_STAGE }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD_STAGE }}
-  IMAGE_TAG: ${{ github.sha }} # Use commit SHA as the image tag
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  SHORT_SHA: ${{ github.event.after }}  # Extract the short SHA of the commit
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: stage
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -30,11 +31,11 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            evilpandas/sw-simple:${{ env.IMAGE_TAG }}
+            evilpandas/sw-simple:${{ env.SHORT_SHA }}
             evilpandas/sw-simple:latest # Optional: Also tag as latest
 
   deploy-to-stage:
-    needs: build # Ensure build job completes first
+    needs: build
     runs-on: ubuntu-latest
     environment: stage
     steps:
@@ -46,7 +47,7 @@ jobs:
 
       - name: Update Image Tag in Kustomization
         run: |
-          kustomize edit set image evilpandas/sw-simple:${{ env.IMAGE_TAG }}
+          kustomize edit set image evilpandas/sw-simple:${{ env.SHORT_SHA }}
 
       - name: Deploy to Stage (Manual Approval)
         uses: actions/github-script@v6
@@ -59,12 +60,12 @@ jobs:
               ref: 'main',
               inputs: {
                 environment: 'stage',
-                image_tag: '${{ env.IMAGE_TAG }}'
+                image_tag: '${{ env.SHORT_SHA }}' # Pass short SHA
               }
             })
 
   deploy-to-prod:
-    needs: deploy-to-stage # Ensure stage deployment is done
+    needs: deploy-to-stage
     runs-on: ubuntu-latest
     environment: production
     if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
