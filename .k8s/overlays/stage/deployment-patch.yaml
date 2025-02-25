@@ -4,4 +4,4 @@ metadata:
   namespace: sw-simple
   name: sw-simple-deployment
 spec:
-  replicas: 3  # Corrected indentation
+  replicas: 5  # Corrected indentation
