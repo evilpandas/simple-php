@@ -32,8 +32,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             evilpandas/sw-simple:${{ env.SHORT_SHA }}
-            evilpandas/sw-simple:latest # Optional: Also tag as latest
-
+            evilpandas/sw-simple:latest 
+            
   deploy-to-stage:
     needs: build
     runs-on: ubuntu-latest
