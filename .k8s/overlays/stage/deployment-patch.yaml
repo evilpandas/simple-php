@@ -5,3 +5,9 @@ metadata:
   name: sw-simple-deployment
 spec:
   replicas: 5  # Corrected indentation
+  template:
+    spec:
+      containers:
+      - name: sw-simple
+        image: evilpandas/sw-simple:${{ env.SHORT_TAG }}
+        

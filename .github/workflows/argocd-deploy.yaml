@@ -71,7 +71,7 @@ jobs:
       - name: Update Image Tag in Kustomization
         run: |
           cd .k8s/overlays/stage
-          kustomize edit set image sw-simple=evilpandas/sw-simple:${{ env.SHORT_TAG }}
+          kustomize edit set image evilpandas/sw-simple=evilpandas/sw-simple:${{ env.SHORT_TAG }}
 
       - name: Commit Updated Manifests
         run: |
