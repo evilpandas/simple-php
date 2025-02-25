@@ -54,6 +54,7 @@ jobs:
 
       - name: Update Image Tag in Kustomization
         run: |
+          cd .k8s/overlays/stage
           kustomize edit set image sw-simple=evilpandas/sw-simple:${{ env.SHORT_TAG }}
 
       - name: Deploy to Stage (Manual Approval)
@@ -85,6 +86,7 @@ jobs:
 
       - name: Update Image Tag in Kustomization
         run: |
+          cd .k8s/overlays/prod
           kustomize edit set image evilpandas/sw-simple:${{ github.event.inputs.image_tag }} --kustomize ``.k8s/kustomization.yaml
 
       - name: Deploy to Prod (Manual Approval)
