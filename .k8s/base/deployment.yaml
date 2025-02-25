@@ -18,5 +18,6 @@ spec:
       containers:
       - name: sw-simple
         image: evilpandas/sw-simple
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
