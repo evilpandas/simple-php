@@ -9,7 +9,4 @@ patches:
 images:
 - name: evilpandas/sw-simple
   newName: evilpandas/sw-simple
-  newTag: f7d5a25
-- name: sw-simple
-  newName: evilpandas/sw-simple
-  newTag: "7239894"
+  newTag: f7d5a25``

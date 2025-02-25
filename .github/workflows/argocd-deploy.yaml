@@ -97,40 +97,39 @@ jobs:
               }
             })
 
-  deploy-to-prod:
-    needs: deploy-to-stage
-    runs-on: ubuntu-latest
-    environment: production
-    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  # deploy-to-prod:
+  #   needs: deploy-to-stage
+  #   runs-on: ubuntu-latest
+  #   environment: production
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
-      - name: Set environment variables
-        run: |
-          SHORT_TAG=$(git rev-parse --short HEAD)
-          echo "SHORT_TAG=$SHORT_TAG" >> $GITHUB_ENV
+  #     - name: Set environment variables
+  #       run: |
+  #         SHORT_TAG=$(git rev-parse --short HEAD)
+  #         echo "SHORT_TAG=$SHORT_TAG" >> $GITHUB_ENV
 
-      - name: Set up Kustomize
-        uses: imranismail/setup-kustomize@v1
+  #     - name: Set up Kustomize
+  #       uses: imranismail/setup-kustomize@v1
 
-      - name: Update Image Tag in Kustomization
-        run: |
-          cd .k8s/overlays/prod
-          kustomize edit set image sw-simple=evilpandas/sw-simple:${{ env.SHORT_TAG }} 
-
-      - name: Deploy to Prod (Manual Approval)
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GH_PAT }}
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'argocd-deploy.yaml',
-              ref: 'main',
-              inputs: {
-                environment: 'prod',
-                image_tag: '${{ env.SHORT_TAG }}'
-              }
-            })
+  #     - name: Update Image Tag in Kustomization
+  #       run: |
+  #         cd .k8s/overlays/prod
+  #         kustomize edit set image evilpandas/sw-simple=evilpandas/sw-simple:${{ env.SHORT_TAG }}
+  #     - name: Deploy to Prod (Manual Approval)
+  #       uses: actions/github-script@v6
+  #       with:
+  #         github-token: ${{ secrets.GH_PAT }}
+  #         script: |
+  #           github.rest.actions.createWorkflowDispatch({
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             workflow_id: 'argocd-deploy.yaml',
+  #             ref: 'main',
+  #             inputs: {
+  #               environment: 'prod',
+  #               image_tag: '${{ env.SHORT_TAG }}'
+  #             }
+  #           })
