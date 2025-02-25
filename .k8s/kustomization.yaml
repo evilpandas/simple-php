@@ -1,6 +1,0 @@
-resources:
-- namespace.yaml
-- service.yaml
-- deployment.yaml
-- ingress.yaml
-- argo-app.yaml

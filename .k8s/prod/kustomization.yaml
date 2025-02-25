@@ -1,0 +1,13 @@
+bases:
+- ../../base
+
+patchesStrategicMerge:
+- deployment-patch.yaml
+
+# Example deployment-patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sw-simple-deployment
+spec:
+  replicas: 5 # Example: Set replicas to 5 for prod
