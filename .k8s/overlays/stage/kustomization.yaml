@@ -14,4 +14,4 @@ patches:
 images:
 - name: evilpandas/sw-simple
   newName: evilpandas/sw-simple
-  newTag: 2e49e8d
+  newTag: 4c60e10
