@@ -7,6 +7,9 @@ resources:
 patches:
 - path: deployment-patch.yaml
 images:
+- name: evilpandas/sw-simple
+  newName: evilpandas/sw-simple
+  newTag: de04987
 - name: sw-simple
   newName: evilpandas/sw-simple
   newTag: "7239894"
