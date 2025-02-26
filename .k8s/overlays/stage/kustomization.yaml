@@ -15,4 +15,4 @@ patches:
 images:
 - name: evilpandas/sw-simple
   newName: evilpandas/sw-simple
-  newTag: ed298aa
+  newTag: "7522097"
