@@ -4,4 +4,4 @@ metadata:
   namespace: sw-simple
   name: sw-simple-deployment
 spec:
-  replicas: 25
+  replicas: 5
