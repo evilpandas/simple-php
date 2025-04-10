@@ -3,7 +3,7 @@
    'container' => getenv('HOSTNAME'),
    'timezone' => getenv('TZ'),
    'time' => date('Y-m-d H:i:s'),
-   'color' => 'red'
+   'color' => 'purple'
   ];
 
   echo json_encode($data);
